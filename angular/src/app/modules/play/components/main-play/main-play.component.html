@@ -1,0 +1,178 @@
+<mat-sidenav-container class="full-page background-gray" hasBackdrop="true">
+  <mat-sidenav opened mode="over" position="end" class="background-gray" #drawer opened="false">
+    <app-chat [messages]="chatMessages"></app-chat>
+  </mat-sidenav>
+  <div class="full-page background-gray" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="m-10">
+      <h1>Intemotion</h1>
+      <button type="button" mat-mini-fab (click)="drawer.toggle();">
+        <mat-icon> chat</mat-icon>
+      </button>
+    </div>
+    <div fxFlex="90" fxLayout="column">
+      <div fxFlex="90" class="m-10">
+        <router-outlet></router-outlet>
+      </div>
+      <mat-divider></mat-divider>
+      <carousel fxFlex="10" *ngIf="banners" [cellsToShow]="3" [loop]="true" [autoplay]="true" [autoplayInterval]="5000">
+        <div *ngFor="let banner of banners" class="carousel-cell">
+          <a [href]="banner.url" target="_blank" [matTooltip]="banner.name">
+            <img [src]="'https://localhost:44346/'+banner.file.path">
+          </a>
+        </div>
+      </carousel>
+    </div>
+  </div>
+</mat-sidenav-container>
+
+<!-- <div class="full-page background-gray" fxLayout="column">
+  <div fxFlex="10" fxLayout="row">
+    <div fxFlex="80" fxLayout="row">
+      <div fxFlex="20">
+        <div class="m-10">
+          <h1>Intemotion</h1>
+        </div>
+      </div>
+      <div fxFlex="80" fxLayout="row">
+        <div class="m-10">
+          <h1>Правила игры</h1>
+        </div>
+        <div class="m-10">
+
+          <h1>Партнеры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Чат подддержки</h1>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="20"></div>
+  </div>
+  <div fxFlex="90" fxLayout="row">
+    <div fxFlex="90" fxLayout="column">
+      <div fxFlex="90">
+        <div fxFlex="80" class="m-10">
+          <router-outlet></router-outlet>
+        </div>
+        <app-chat fxFlex="20" [messages]="chatMessages"></app-chat>
+      </div>
+      <div fxFlex="10">
+        <mat-divider></mat-divider>
+        ПАРТНЕРЫ
+      </div>
+    </div>
+    <div fxFlex="10">
+      <mat-grid-list cols="2" rowHeight="1:1" fxLayout="column" fxLayoutAlign="start center">
+        <mat-grid-tile *ngFor="let stream of streams">
+          <app-camera-component [stream]="stream"></app-camera-component>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+  </div>
+
+
+</div> -->
+
+<!-- <div fxFlex="80" fxLayout="column">
+    <div fxFlex="10" fxLayout="row">
+      <div fxFlex="20">
+        <div class="m-10">
+          <h1>Intemotion</h1>
+        </div>
+      </div>
+      <div fxFlex="80" fxLayout="row">
+        <div class="m-10">
+          <h1>Правила игры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Партнеры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Чат подддержки</h1>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="80">
+      <router-outlet></router-outlet>
+    </div>
+    <div fxFlex="10">
+      <p>ПАРТНЕРЫ</p>
+    </div>
+  </div>
+  <div fxFlex="20" fxLayout="column">
+    <div fxFlex="20">
+      <p>АДМИН</p>
+    </div>
+    <div fxFlex="80" fxLayout="row">
+      <div fxFlex="50">
+        <app-chat [messages]="chatMessages"></app-chat>
+      </div>
+      <div fxFlex="50">
+        <p>КАМЕРЫ</p>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div fxFlex="20">
+
+    <div fxFlex="10" fxLayout="row">
+      <div fxFlex="20">
+        <div class="m-10">
+          <h1>Intemotion</h1>
+        </div>
+      </div>
+      <div fxFlex="80" fxLayout="row">
+        <div class="m-10">
+          <h1>Правила игры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Партнеры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Чат подддержки</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="60">
+
+  </div>
+  <div fxFlex="80" fxLayout="column">
+    <div fxFlex="10" fxLayout="row wrap">
+      <div fxFlex="20">
+        <div class="m-10">
+          <h1>Intemotion</h1>
+        </div>
+      </div>
+      <div fxFlex="80" fxLayout="row wrap">
+        <div class="m-10">
+          <h1>Правила игры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Партнеры</h1>
+        </div>
+        <div class="m-10">
+          <h1>Чат подддержки</h1>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="80">
+      <router-outlet></router-outlet>
+    </div>
+    <div fxFlex="10">
+      <mat-divider></mat-divider>
+      <p>Партнеры</p>
+    </div>
+  </div>
+  <div fxFlex="10">
+    <app-chat [messages]="chatMessages"></app-chat>
+  </div>
+  <div fxFlex="10">
+    Камеры
+    Кол-во камер: {{streams.length}}
+    <div>
+      <app-camera-component [stream]="stream" *ngFor="let stream of streams"></app-camera-component>
+    </div>
+  </div>
+</div> -->

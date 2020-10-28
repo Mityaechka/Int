@@ -1,0 +1,27 @@
+<div class="flex flex-center full-page flex-row">
+  <div class="full-page flex flex-center">
+    <h1>Intemotion</h1>
+  </div>
+  <form [formGroup]="authForm" (ngSubmit)="auth()" class="full-page flex flex-center flex-column">
+    <div>
+      <p>Для зарегистрированных пользователей</p>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Логин</mat-label>
+        <input matInput placeholder="Введите Ваш логин" formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput placeholder="Введите Ваш пароль" type="password" formControlName="password">
+      </mat-form-field>
+      <div class="mb-10">
+        <a mat-button href="#">Забыли пароль</a>
+      </div>
+      <div class="full-width mb-10">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="authForm.invalid" >Войти</button>
+      </div>
+      <div class="full-width mb-10">
+        <button mat-flat-button color="primary" routerLink="/live/register">Новый участник</button>
+      </div>
+    </div>
+  </form>
+</div>

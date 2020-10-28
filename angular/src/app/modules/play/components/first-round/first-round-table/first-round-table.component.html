@@ -1,0 +1,16 @@
+<div fxLayout="column" class="table full-width">
+  <div fxLayout="row">
+    <div fxFlex="20"></div>
+    <div *ngFor="let cost of table.cost" fxFlex="20">
+      <p class="mat-h4 header"> {{cost}}</p>
+    </div>
+  </div>
+  <div fxLayout="row" *ngFor="let category of table.categories" class="mt-10 mb-10">
+    <div fxFlex="20" class="mr-10">
+      <p class="mat-h4">{{category.name}}</p>
+    </div>
+    <div *ngFor="let cost of table.cost;let i = index" fxFlex="20" class="cell">
+      <p class="mat-h4 header">{{isAnswerTaken(category.id,i)?'+':'-'}}</p>
+    </div>
+  </div>
+</div>

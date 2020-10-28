@@ -1,0 +1,8 @@
+.video {
+  width: 100px;
+  height: 100px;
+}
+
+:host {
+  margin: 10px;
+}

@@ -1,0 +1,7 @@
+.buttons-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  /* width: 300px; */
+}

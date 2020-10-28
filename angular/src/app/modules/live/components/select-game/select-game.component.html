@@ -1,0 +1,30 @@
+<div class="full-page  flex flex-center flex-column">
+  <div class=" flex flex-center flex-column">
+    <h1 class="text-center">Intemotion</h1>
+    <h2 class="text-center" *ngIf="user">Добро пожаловать, {{user.userName}}</h2>
+  </div>
+  <div class="full-page  flex flex-center flex-row">
+    <div class="full-page flex flex-center flex-column">
+      <p class="text-center">Информация</p>
+    </div>
+    <form class="full-page flex flex-center flex-column" [formGroup]="dateForm" (ngSubmit)="joinToGame()">
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Дата игры</mat-label>
+          <input matInput type="date" placeholder="Выбрать дату игры" formControlName="date">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Код</mat-label>
+          <input matInput placeholder="Введите код ваучера" formControlName="code">
+        </mat-form-field>
+        <div class="full-width mb-10">
+          <button mat-flat-button color="primary" type="submit" [disabled]="dateForm.invalid">Записаться</button>
+        </div>
+        <!-- <div class="full-width mb-10">
+          <button mat-stroked-button [disabled]="dateControl.invalid">Оплатить и записаться</button>
+        </div> -->
+      </div>
+    </form>
+  </div>
+
+</div>

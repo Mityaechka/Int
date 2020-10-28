@@ -1,0 +1,11 @@
+<div fxLayout="column" class="full-height">
+  <div *ngIf="time" fxFlex="80" fxLayout="column" fxLayoutAlign="center center" class="full-page">
+    <h1 class="mat-h1">До начала игры осталось:</h1>
+    <h1 class="mat-display-3">
+      <app-countdown [time]="time"></app-countdown>
+    </h1>
+  </div>
+  <div fxFlex="20">
+    <button mat-raised-button color="primary" (click)="skipTimer()">Пропустить</button>
+  </div>
+</div>

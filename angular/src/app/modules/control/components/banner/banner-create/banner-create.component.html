@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="createBanner()">
+  <h1 mat-dialog-title>Созадние нового баннера</h1>
+  <div mat-dialog-content fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>Название</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>URL</mat-label>
+      <input matInput formControlName="url">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Изображение</mat-label>
+      <ngx-mat-file-input formControlName="file">
+      </ngx-mat-file-input>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="warn" mat-dialog-close>Закрыть</button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Создать</button>
+  </div>
+</form>

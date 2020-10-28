@@ -1,0 +1,124 @@
+<div class="m-10">
+  <h1>Третий тур</h1>
+  <h1>Интеллектуальный</h1>
+
+  <mat-divider></mat-divider>
+  <div fxLayout="row">
+    <div fxFlex="80">
+      <ng-container [ngSwitch]="thirdRoundState">
+        <ng-container *ngSwitchCase="ThirdRoundState.Chronology">
+          <h1>Хронология</h1>
+          <p>Расставте картинки в правильном порядке</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="ThirdRoundState.MelodyGuess">
+          <h1>Мелодия</h1>
+          <p>Угадайте мелодию</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="ThirdRoundState.Association">
+          <h1>Ассоциации</h1>
+          <p>Выбрать правильный вариант ответа</p>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div fxFlex="20">
+      <p class="mat-h4">Оставшееся время</p>
+      <div *ngFor="let r of reset">
+        <p class="mat-h3 orange">
+          <app-countdown *ngIf="time" [time]="time"></app-countdown>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<mat-divider></mat-divider>
+
+<ng-container *ngIf="state==HubEventEnum.ThirdRoundReceivingAnswers">
+  <ng-container *ngIf="!isAnswerSend; else answerNotSend">
+    <ng-container [ngSwitch]="thirdRoundState">
+      <ng-container *ngSwitchCase="ThirdRoundState.Chronology">
+        <div cdkDropList cdkDropListOrientation="horizontal" class="full-width" fxLayout='row'
+          (cdkDropListDropped)="dropChronologyItem($event)">
+          <div class="box" *ngFor="let chronologyItem of chronologyItems" cdkDrag fxLayout="column">
+            <img [src]="'https://localhost:44346/'+chronologyItem.path" style="width: 100px;height: 100px;"
+              class="mb-10">
+            <!-- <h3>{{chronologyItem.value}}</h3> -->
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-around stretch">
+          <button mat-flat-button color="primary" class="m-10" (click)="sendChronologyAnswer()">Отправить
+            ответ</button>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="ThirdRoundState.MelodyGuess">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+          <audio #melody controls class="m-10">
+            <source [src]="'https://localhost:44346/'+melodyPath" type="audio/mp3">
+          </audio>
+          <div class="buttons-container full-page m-10">
+            <div *ngFor="let answer of melodyVariants">
+              <button class="full-width" mat-flat-button color="primary" (click)="sendMelodyAnswer (answer)">
+                {{answer.value}}
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+      <ng-container *ngSwitchCase="ThirdRoundState.Association">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+          <div>
+            <h2>Слово:</h2>
+            <h1>{{associationWord}}</h1>
+          </div>
+          <div class="buttons-container full-page m-10">
+            <div *ngFor="let associationVariant of associationVariants">
+              <button class="full-width" mat-flat-button color="primary"
+                (click)="sendAssociationAnswer(associationVariant)">
+                {{associationVariant.value}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </ng-container>
+  <ng-template #answerNotSend>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <p class="mat-h2">Ваш ответ принят. Ждите следующего вопроса</p>
+    </div>
+
+  </ng-template>
+</ng-container>
+
+<ng-container *ngIf="state==HubEventEnum.ThirdRoundSelectQuestion">
+
+  <ng-container [ngSwitch]="lastState">
+    <ng-container *ngSwitchCase="ThirdRoundState.Chronology">
+      <ng-container *ngIf="lastChronology">
+        <h1>Правильный порядок в предыдущей хронологии</h1>
+        <div class="full-width" fxLayout='row'>
+          <div class="box" *ngFor="let chronologyItem of lastChronology.items" fxLayout="column">
+            <img [src]="'https://localhost:44346/'+chronologyItem.path" style="width: 100px;height: 100px;"
+              class="mb-10">
+            <h3>{{chronologyItem.value}}</h3>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="ThirdRoundState.MelodyGuess">
+      <ng-container *ngIf="lastMelody">
+        <h1>Предыдущая мелодия: {{lastMelody.correctAnswer.value}}</h1>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="ThirdRoundState.Association">
+      <ng-container *ngIf="lastAssociation">
+        <h1>Предыдущая ассоцияация: {{lastAssociation.correctAnswer.value}}</h1>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <p *ngIf="lastScore!=-1">Получено очков за предыдущий ответ: {{lastScore}}</p>
+
+</ng-container>

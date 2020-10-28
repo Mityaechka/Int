@@ -1,0 +1,64 @@
+<div class="m-10">
+  <h1>Первый тур</h1>
+  <h1>Интеллектуальный</h1>
+
+  <ng-container *ngIf="state==HubEventEnum.FirstRoundReceivingAnswers&&question">
+    <mat-divider></mat-divider>
+    <div fxLayout="column">
+      <div fxFlex="20">
+        <p class="mat-h4">Оставшееся время</p>
+        <p class="mat-h3 orange">
+          <app-countdown *ngIf="question.time" [time]="question.time"></app-countdown>
+        </p>
+      </div>
+      <div fxFlex="20" fxLayout="row">
+        <div class="m-10">
+          <p class="mat-h4">Категория </p>
+          <p class="mat-h3 orange">{{question.category}}</p>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="m-10">
+          <p class="mat-h4">Стоимость вопроса </p>
+          <p class="mat-h3 orange">{{question.cost}}</p>
+        </div>
+      </div>
+
+
+    </div>
+    <mat-divider></mat-divider>
+    <p class="mat-h3">Вопрос: {{question.question}}</p>
+    <!-- <ng-container *ngIf="!isAnswerSend; else answerNotSend"> -->
+    <div *ngIf="!lastAnswer" class="buttons-container">
+      <button *ngFor="let answer of question.answers" mat-flat-button color="primary" class="full-page"
+        [disabled]="isAnswerSend" (click)="sendAnswer(answer)">
+        {{answer.value}}
+      </button>
+    </div>
+    <div *ngIf="lastAnswer" class="buttons-container">
+      <button *ngFor="let answer of question.answers" mat-flat-button color="primary" color="warn" class="full-page"
+        [disabled]="isAnswerSend">
+        {{answer.value}}
+      </button>
+    </div>
+    <!-- </ng-container> -->
+    <!-- <ng-template #answerNotSend>
+      <p class="mat-h2">Ваш ответ принят. Ждите следующего вопроса</p>
+    </ng-template> -->
+
+
+  </ng-container>
+  <ng-container *ngIf="state==HubEventEnum.FirstRoundSelectQuestion">
+    <mat-divider></mat-divider>
+
+    <p class="mat-h4">Оставшееся время</p>
+    <p class="mat-h3 orange">
+      <app-countdown *ngIf="time" [time]="time"></app-countdown>
+    </p>
+    <!-- <app-first-round-table [table]="table"></app-first-round-table> -->
+    <div *ngIf="correctAnswer">
+      <p>Правильный ответ: {{correctAnswer.value}}</p>
+      <!-- <p>{{lastAnswer?'Ваш ответ: '+lastAnswer.value:'Вы не дали ответ на предыдущий вопрос'}}</p>
+      <p>Получено очков за предыдущий ответ: {{lastScore}}</p> -->
+    </div>
+  </ng-container>
+</div>

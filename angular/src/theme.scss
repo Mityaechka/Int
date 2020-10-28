@@ -1,0 +1,66 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$my-primary: (
+  50: #ffa500,
+  100: #ffa500,
+  200: #ffa500,
+  300: #ffa500,
+  400: #ffa500,
+  500: #ffa500,
+  600: #ffa500,
+  700: #ffa500,
+  800: #ffa500,
+  900: #ffa500,
+  A100: #ffa500,
+  A200: #ffa500,
+  A400: #ffa500,
+  A700: #ffa500,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$mat-light-theme-foreground: (
+  base: white,
+  divider: rgba(white, 0.12),
+  dividers: rgba(white, 0.12),
+  disabled: rgba(white, 0.38),
+  disabled-button: rgba(white, 0.38),
+  disabled-text: rgba(white, 0.38),
+  hint-text: rgba(white, 0.38),
+  secondary-text: rgba(white, 0.54),
+  icon: rgba(white, 0.54),
+  icons: rgba(white, 0.54),
+  text: rgba(white, 0.87),
+);
+
+$my-theme-primary: mat-palette($my-primary);
+$my-theme-accent: mat-palette($mat-blue);
+$my-theme-warn: mat-palette($mat-red);
+
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+
+$foreground: map-get($my-theme, foreground);
+
+.foreground-color {
+  color: mat-color($foreground, secondary-text);
+}
+
+@include angular-material-theme($my-theme);
+
+@include mat-form-field-theme($my-theme); // Form-Field theme
+@include mat-input-theme($my-theme);

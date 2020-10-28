@@ -1,0 +1,50 @@
+<h1>Второй тур </h1>
+<h1>Правда или ложь</h1>
+<div fxLayout="row" class="full-width">
+  <div class="m-10">
+    <p>На экране утверждение</p>
+    <p class="orange">Нужно выбрать Правда или Ложь</p>
+  </div>
+  <ng-container *ngIf="state==HubEventEnum.SecondRoundSelectQuestion">
+    <div class="m-10">
+      <p>Оставшееся время</p>
+      <app-countdown class="orange" *ngIf="time" [time]="time"></app-countdown>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="state==HubEventEnum.SecondRoundReceivingAnswers">
+    <div class="m-10">
+      <p>Оставшееся время</p>
+      <app-countdown class="orange" *ngIf="time" [time]="time"></app-countdown>
+    </div>
+  </ng-container>
+</div>
+<ng-container *ngIf="state==HubEventEnum.SecondRoundReceivingAnswers">
+  <mat-divider></mat-divider>
+
+  <mat-divider></mat-divider>
+  <p>Вопрос:</p>
+  <p> {{question}}</p>
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <button mat-flat-button color="warn" class="full-width m-10" (click)="sendAnswer(false)" [disabled]="isAnswerSend"
+      style="margin: 10px;">
+      Ложь
+    </button>
+    <button mat-flat-button color="primary" class="full-width m-10" (click)="sendAnswer(true)" style="margin: 10px;"
+      [disabled]="isAnswerSend">
+      Правда
+    </button>
+  </div>
+  <!-- <div *ngIf="isAnswerSend">
+    <p>Ваш ответ принят. Ждите следующего вопроса</p>
+  </div> -->
+
+
+</ng-container>
+<ng-container *ngIf="state==HubEventEnum.SecondRoundSelectQuestion">
+
+  <mat-divider></mat-divider>
+  <div *ngIf="correctAnswer">
+    <p>Правильный ответ</p>
+    <p class="orange">{{correctAnswer.isTruth?'Правда':'Ложь'}}</p>
+  </div>
+</ng-container>

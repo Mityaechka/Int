@@ -1,0 +1,19 @@
+<div class="m-10">
+  <button mat-flat-button color="primary" (click)="createBanner()">Создать баннер</button>
+</div>
+
+<ng-container *ngIf="banners">
+  <ng-container *ngIf="banners &&banners.length!=0 ; else empty">
+    <mat-selection-list role="list" [multiple]="false" class="list">
+      <ng-container *ngFor="let game of banners">
+        <mat-list-option [value]="game">
+          <div mat-list-line>Назвавние: {{game.name}}</div>
+          <div mat-list-item>URL: {{game.url}}</div>
+        </mat-list-option>
+      </ng-container>
+    </mat-selection-list>
+  </ng-container>
+  <ng-template #empty>
+    <h3 class="title">Отсуствуют баннеры</h3>
+  </ng-template>
+</ng-container>

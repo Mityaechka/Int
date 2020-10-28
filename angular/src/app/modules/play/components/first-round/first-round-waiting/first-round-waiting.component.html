@@ -1,0 +1,34 @@
+<div fxLayout="column" class="full-height">
+  <div>
+    <h1>Первый раунд</h1>
+    <h1>Интеллектуальный</h1>
+    <div fxLayout="row">
+      <div fxLayout="column">
+        <div class="m-10">
+          <p class="mat-h4 orange">Рандомайзер</p>
+          <p class="mat-h3">Выбор вопроса</p>
+        </div>
+        <div class="m-10">
+          <p class="mat-h4 orange">12 вопросов</p>
+          <p class="mat-h3">1 минута</p>
+        </div>
+      </div>
+
+      <mat-divider [vertical]="true"></mat-divider>
+      <div fxLayout="column">
+        <div class="m-10">
+          <p class="mat-h4 orange">Ответ в течение 15 секунд</p>
+          <p class="mat-h3">+2 балл</p>
+        </div>
+        <div class="m-10">
+          <p class="mat-h4 orange">Ответ в течение 30 секунд</p>
+          <p class="mat-h3">+1 балл</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxFlex="20" class="m-10">
+    <button mat-raised-button color="primary" (click)="startFirstRound()">Начать первый раунд</button>
+  </div>
+</div>

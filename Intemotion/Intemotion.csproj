@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200820154615_Init.cs" />
+    <Compile Remove="Migrations\20200820154615_Init.Designer.cs" />
+    <Compile Remove="Migrations\20200820155357_InitialMigrations.cs" />
+    <Compile Remove="Migrations\20200820155357_InitialMigrations.Designer.cs" />
+    <Compile Remove="Migrations\20200905155510_FirstRoundResult.cs" />
+    <Compile Remove="Migrations\20200905155510_FirstRoundResult.Designer.cs" />
+    <Compile Remove="Migrations\20200905155634_FirstRoundResult.cs" />
+    <Compile Remove="Migrations\20200905155634_FirstRoundResult.Designer.cs" />
+    <Compile Remove="Migrations\20200921151150_ThirdRound.cs" />
+    <Compile Remove="Migrations\20200921151150_ThirdRound.Designer.cs" />
+    <Compile Remove="Migrations\20200921151509_ThirdRound.cs" />
+    <Compile Remove="Migrations\20200921151509_ThirdRound.Designer.cs" />
+    <Compile Remove="Migrations\20201003133822_ChatMessage_DeleteBehavior2.cs" />
+    <Compile Remove="Migrations\20201003133822_ChatMessage_DeleteBehavior2.Designer.cs" />
+    <Compile Remove="Migrations\20201004060835_RemoveQuestionCost.cs" />
+    <Compile Remove="Migrations\20201004060835_RemoveQuestionCost.Designer.cs" />
+    <Compile Remove="Migrations\20201010052032_ThirdRoundId_null.cs" />
+    <Compile Remove="Migrations\20201010052032_ThirdRoundId_null.Designer.cs" />
+    <Compile Remove="Migrations\20201010062257_ThirdRound_Result.cs" />
+    <Compile Remove="Migrations\20201010062257_ThirdRound_Result.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="OpenTok" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+
+</Project>

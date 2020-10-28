@@ -1,0 +1,22 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.icon {
+  font-size: 75px;
+}
+.button {
+  font-size: 18px;
+}

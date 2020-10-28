@@ -1,0 +1,26 @@
+<mat-drawer-container class="example-container" class="main-container background-gray">
+  <mat-drawer #drawer class="example-sidenav" mode="over" opened="false">
+    <mat-list>
+      <mat-list-item> <a class="nav" mat-raised-button color="primary" routerLink="/control/games"
+          (click)="drawer.toggle()">Игры</a>
+      </mat-list-item>
+      <mat-list-item> <a class="nav" mat-raised-button color="primary" routerLink="/control/game/create"
+          (click)="drawer.toggle()">Создать игру</a>
+      </mat-list-item>
+      <mat-list-item> <a class="nav" mat-raised-button color="primary" routerLink="/control/banners"
+          (click)="drawer.toggle()">Баннеры</a>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Intemotion</span>
+    </mat-toolbar>
+    <router-outlet class="container"></router-outlet>
+  </div>
+
+</mat-drawer-container>

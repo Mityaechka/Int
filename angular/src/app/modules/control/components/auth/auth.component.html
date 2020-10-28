@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" (ngSubmit)="login() " class="form-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Почта</mat-label>
+    <input matInput placeholder="Введите Вашу почту" formControlName="email">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Пароль</mat-label>
+    <input type="password" matInput placeholder="Введите Ваш пароль" formControlName="password">
+
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" type="submit" [disabled]="loginForm.invalid">Войти</button>
+</form>

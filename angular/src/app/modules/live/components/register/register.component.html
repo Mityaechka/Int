@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="full-page">
+  <!-- <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+    <div>
+      <h1>Intemotion</h1>
+    </div>
+    <div>
+      <h1>Войти с помощью</h1>
+    </div>
+  </div> -->
+  <form fxFlex="80" fxLayout="column" [formGroup]="form" (ngSubmit)="register()">
+    <div fxLayout="row">
+      <mat-form-field appearance="outline" class="m-10">
+        <mat-label>Почта</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="m-10">
+        <mat-label>Имя</mat-label>
+        <input matInput formControlName="userName">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field appearance="outline" class="m-10">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="m-10">
+        <mat-label>Повторите пароль</mat-label>
+        <input type="password" matInput formControlName="passwordConfirm">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field appearance="outline" class="m-10">
+        <mat-label>Пол</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option id="background-gray" value="0">Муж.</mat-option>
+          <mat-option id="background-gray" value="1">Жен.</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="m-10">
+        <mat-label>Год рождения</mat-label>
+        <input matInput type="date" formControlName="birthDate">
+      </mat-form-field>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="mb-10">
+      <mat-checkbox color="primary">Даю согласие на обработку персональных данных</mat-checkbox>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid" type="submit">Зарегестрироваться</button>
+      </div>
+    </div>
+  </form>
+</div>

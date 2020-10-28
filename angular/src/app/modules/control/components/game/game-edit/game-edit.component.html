@@ -1,0 +1,252 @@
+<form [formGroup]="form">
+
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Основная информация
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div formGroupName="game" fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Название игры</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Описание</mat-label>
+          <input matInput formControlName="description">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Дата начала</mat-label>
+          <input matInput formControlName="planeStartDate" type="datetime-local">
+        </mat-form-field>
+      </div>
+      <mat-action-row>
+        <button mat-flat-button color="primary" (click)="nextStep()">Вперед</button>
+      </mat-action-row>
+
+
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Первый тур
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div formGroupName="firstRound">
+        <div formArrayName="questionsCategories" class="secon-round-container">
+          <h3>Категории</h3>
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel *ngFor="let questionsCategory of firstRoundQuestionsCategories.controls; let i = index"
+              formGroupName="{{i}}">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Категория {{i+1}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-form-field appearance="outline">
+                <mat-label>Название категории</mat-label>
+                <input matInput placeholder="Введите название категории" formControlName="name">
+              </mat-form-field>
+
+              <div formArrayName="questions">
+                <h3>Вопросы</h3>
+                <mat-accordion class="example-headers-align">
+                  <mat-expansion-panel
+                    *ngFor="let question of questionsCategory.controls.questions.controls let j = index"
+                    formGroupName="{{j}}" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Вопрос {{j+1}}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Текст вопроса</mat-label>
+                        <input matInput placeholder="Введите текст вопроса" formControlName="value">
+                      </mat-form-field>
+                      <div formArrayName="answers">
+                        <h3>Ответы</h3>
+                        <div class="form-group" *ngFor="let answer of question.controls.answers.controls let k = index">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Текст ответа</mat-label>
+                            <input matInput placeholder="Введите текст ответа" formControlName="{{k}}">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+
+      <mat-action-row>
+        <button mat-flat-button color="warn" (click)="prevStep()">Назад</button>
+        <button mat-flat-button color="primary" (click)="nextStep()">Вперед</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Второй тур
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div formArrayName="secondRound">
+        <p>Всего вопросов: {{secondRoundForm.controls.length}}</p>
+        <div class="secon-round-container">
+          <div class="form-group " *ngFor="let question of secondRoundForm.controls; let i = index">
+            <div [formGroupName]="i" class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
+              <div>
+                <p>{{i+1}}</p>
+              </div>
+              <div class="m-10 full-width">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Вопрос</mat-label>
+                  <input matInput placeholder="Введите вопрос" formControlName="value">
+                </mat-form-field>
+              </div>
+              <div class="m-10">
+                <mat-checkbox formControlName="isTruth">Правильный?</mat-checkbox>
+              </div>
+              <div class="m-10">
+                <button mat-flat-button color="warn" (click)=" removeSecondRoundQuestion(i)">Удалить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button mat-flat-button color="primary" (click)="pushSecondRoundQuestion()">Добавить</button>
+      </div>
+      <mat-action-row>
+        <button mat-flat-button color="warn" (click)="prevStep()">Назад</button>
+        <button mat-flat-button color="primary" (click)="nextStep()">Вперед</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Третий тур
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div formGroupName="thirdRound">
+        <div formArrayName="chronologies">
+          <h1>Хронология</h1>
+          <div *ngFor="let chronologie of chronologies.controls;let i = index">
+            <div [formGroupName]="i">
+              <p>Хронология {{i+1}}</p>
+              <div formArrayName="chronologyItems">
+                <div *ngFor="let item of chronologie.controls.chronologyItems.controls;let j = index">
+                  <div [formGroupName]="j">
+                    <div>
+                      <p>Изображение {{j+1}}</p>
+                    </div>
+                    <div class="m-10 full-width">
+                      <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Значение</mat-label>
+                        <input matInput formControlName="value">
+                      </mat-form-field>
+                    </div>
+                    <div class="m-10 full-width">
+                      <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Изображение</mat-label>
+                        <ngx-mat-file-input formControlName="file">
+                        </ngx-mat-file-input>
+                      </mat-form-field>
+                    </div>
+                    <div class="m-10">
+                      <button type="button" mat-flat-button color="warn"
+                        (click)="removeChronologieItem(chronologie,j)">Удалить изображение</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div class="m-10">
+                  <button type="button" mat-flat-button color="primary"
+                    (click)="addChronologieItem(chronologie)">Добавить
+                    хронологии</button>
+                </div>
+                <div class="m-10">
+                  <button type="button" mat-flat-button color="warn" (click)="removeChronologie(i)">Удалить
+                    изображение</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-10">
+            <button type="button" mat-flat-button color="primary" (click)="addChronologie()">Добавить
+              хронологию</button>
+          </div>
+        </div>
+        <div formArrayName="melodyGuesses">
+          <h1>Угадай мелодию</h1>
+          <div *ngFor="let melodyGuesse of melodyGuesses.controls;let i = index" [formGroupName]="i">
+            <div>
+              <p>Мелодия {{i+1}}</p>
+            </div>
+            <div class="m-10 full-width">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Мелодия</mat-label>
+                <ngx-mat-file-input formControlName="file">
+                </ngx-mat-file-input>
+              </mat-form-field>
+            </div>
+            <div formArrayName="melodyGuessVariants">
+              <div *ngFor="let variant of melodyGuesse.controls.melodyGuessVariants.controls;let j = index">
+                <div class="m-10 full-width">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Значение</mat-label>
+                    <input matInput [formControlName]="j">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="m-10">
+              <button type="button" mat-flat-button color="warn" (click)="removeMelody(i)">Удалить мелодию</button>
+            </div>
+          </div>
+          <div class="m-10">
+            <button type="button" mat-flat-button color="primary" (click)="addMelody()">Добавить мелодию</button>
+          </div>
+        </div>
+        <div formArrayName="associations">
+          <h1>Ассоциации</h1>
+          <div *ngFor="let association of associations.controls;let i = index" [formGroupName]="i">
+            <div class="m-10 full-width">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Слово</mat-label>
+                <input matInput formControlName="word">
+              </mat-form-field>
+              <div formArrayName="associationVariants">
+                <div *ngFor="let variants of association.controls.associationVariants.controls;let j = index">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Вариант</mat-label>
+                    <input matInput [formControlName]="j">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="m-10">
+              <button type="button" mat-flat-button color="warn" (click)="removeAssociation(i)">Удалить
+                ассоциацию</button>
+            </div>
+          </div>
+          <div class="m-10">
+            <button type="button" mat-flat-button color="primary" (click)="addAssociation()">Добавить
+              ассоциацию</button>
+          </div>
+        </div>
+      </div>
+      <mat-action-row>
+        <button mat-flat-button color="warn" (click)="prevStep()">Назад</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="m-10">
+    <button mat-flat-button color="primary" (click)="saveAll()">Сохранить</button>
+  </div>
+</form>

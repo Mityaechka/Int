@@ -1,0 +1,15 @@
+<form [formGroup]="authForm" (ngSubmit)="auth()" class="full-page flex flex-center flex-column">
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Логин</mat-label>
+      <input matInput placeholder="Введите Ваш логин" formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Пароль</mat-label>
+      <input matInput placeholder="Введите Ваш пароль" type="password" formControlName="password">
+    </mat-form-field>
+    <div class="full-width mb-10">
+      <button mat-stroked-button color="primary" type="submit" [disabled]="authForm.invalid">Войти</button>
+    </div>
+  </div>
+</form>

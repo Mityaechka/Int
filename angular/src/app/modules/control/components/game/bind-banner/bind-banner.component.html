@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Выбор баннера</h1>
+<div mat-dialog-content>
+  <ng-container *ngIf="banners &&banners.length!=0 ; else empty">
+    <mat-selection-list role="list" #gamesList (selectionChange)="onSelectBanner($event)" [multiple]="false"
+      class="list">
+      <ng-container *ngFor="let banner of banners">
+        <mat-list-option [value]="banner">
+          <div mat-list-line>{{banner.name}}</div>
+        </mat-list-option>
+      </ng-container>
+    </mat-selection-list>
+  </ng-container>
+  <ng-template #empty>
+    <h3 class="title">Пользователи не найдены</h3>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Закрыть</button>
+</div>

@@ -1,0 +1,149 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+label,
+mat-label,
+input {
+  color: white;
+}
+.background-gray {
+  background-color: #666565;
+  mat-dialog-container,
+  mat-expansion-panel,
+  mat-option {
+    background-color: #666565;
+  }
+}
+.background-image{
+  background: url("assets/img/background.png");
+}
+#background-gray {
+  background-color: #666565;
+}
+.mat-input-underline {
+  background-color: white;
+}
+// ::ng-deep .mat-form-field-underline,
+// ::ng-deep .mat-form-field-ripple {
+//   background-color: white !important;
+//   color: white !important;
+// }
+
+// ::ng-deep .mat-form-field-empty.mat-form-field-label {
+//   color: white;
+// }
+
+/**/
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.full-page {
+  width: 100%;
+  height: 100%;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+}
+button.nav,
+a.nav {
+  margin: 20px;
+  width: 100%;
+}
+h1.title,
+.title {
+  text-align: center;
+  margin: 5px;
+}
+
+.full-page {
+  width: 100%;
+  height: 100%;
+}
+.full-width {
+  width: 100%;
+}
+.full-height {
+  height: 100%;
+}
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex: row;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.m-50 {
+  margin: 50px;
+}
+.m-10 {
+  margin: 10px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.ml-10 {
+  margin-left: 10px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  /* background: url(assets/img/background.png) no-repeat center center fixed; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.orange {
+  color: orange;
+}
+/* body,
+input {
+  color: white;
+}
+::placeholder {
+  color: white;
+} */

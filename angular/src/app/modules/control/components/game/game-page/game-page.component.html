@@ -1,0 +1,80 @@
+<ng-container *ngIf="!isInit">
+  <div *ngIf="game">
+    <h1 class="title">{{game.name}}</h1>
+    <h3>Описание: {{game.description}}</h3>
+    <p>Дата начала: {{game.planeStartDate |date:'dd.MM.yyyy HH.mm'}}</p>
+    <p>Текщия стадия: {{GameStateDisplay[game.gameState]}}</p>
+    <div *ngIf="user" fxLayout="row">
+      <ng-container *ngIf="userRole==PlayerRole.Creator">
+        <div class="m-10">
+          <button mat-raised-button color="primary" [routerLink]="['/control/game/edit']"
+            [queryParams]="{id:game.id}">Редактировать</button>
+        </div>
+        <ng-container [ngSwitch]="game.gameState">
+          <div *ngSwitchCase="GameState.Create" class="m-10">
+            <button mat-raised-button color="primary" (click)="ChangeGameStateToRecordingClick()">
+              Начать ожидание игроков
+            </button>
+          </div>
+          <div *ngSwitchCase="GameState.RecordingPlaysers" class="m-10">
+            <button mat-raised-button color="primary" (click)="startGame()">
+              Начать игру
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="!hasModerator">
+          <div class="m-10">
+            <button mat-raised-button color="primary" (click)="bindModeratorClick()">Назначить модератора</button>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!isAdmin">
+        <button mat-raised-button color="accent">Покинуть</button>
+      </ng-container>
+    </div>
+  </div>
+  <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+    <mat-tab label="Список игроков">
+      <ng-container *ngIf="players">
+        <p>Игроков {{players.length}}</p>
+        <ng-container *ngIf="players.length<game.maxPlayersCount">
+
+        </ng-container>
+        <mat-list role="list">
+          <mat-list-item *ngFor="let player of players">
+            <div mat-line>{{player.user.userName}}</div>
+            <div mat-line>{{playerRoleDisplay[player.playerRole]}}</div>
+            <!-- <div mat-line *ngIf="isAdmin &&player.user.id!=user.id">
+              <button mat-raised-button color="warn">Исключить</button>
+            </div> -->
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+
+    </mat-tab>
+    <mat-tab *ngIf="isAdmin" label="Ваучеры">
+      <button mat-raised-button color="primary" (click)="CreateVoucher()">Создать ваучер</button>
+      <ng-container *ngIf="vouchers">
+        <mat-list role="list">
+          <mat-list-item *ngFor="let voucher of vouchers">
+            <div mat-line>Код: {{voucher.code}}</div>
+            <div mat-line>Активен: {{voucher.isActive?"Да":"Нет"}}</div>
+            <div mat-line *ngIf="!voucher.isActive">Активировано пользователем: {{voucher.user.userName}}</div>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+    </mat-tab>
+    <mat-tab *ngIf="isAdmin" label="Баннеры">
+      <button mat-raised-button color="primary" (click)="AddBanner()">Добавить баннер</button>
+      <ng-container *ngIf="vouchers">
+        <mat-list role="list">
+          <mat-list-item *ngFor="let banner of banners">
+            <div mat-line>Название: {{banner.name}}</div>
+            <div mat-line>URL: {{banner.url}}</div>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>

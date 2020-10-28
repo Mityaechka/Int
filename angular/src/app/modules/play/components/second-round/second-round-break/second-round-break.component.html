@@ -1,0 +1,8 @@
+<h1>Перерыв между 1 и 2 раундом</h1>
+<h1>Текущий счет</h1>
+<div class="full-page">
+  <app-statistic *ngIf="statistic" [statistic]="statistic"></app-statistic>
+  <div>
+    <button mat-flat-button color="primary" (click)="startWaitingThirdRound()">Продолжить</button>
+  </div>
+</div>

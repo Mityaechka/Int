@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Поиск пользователя</h1>
+<div mat-dialog-content>
+  <form [formGroup]="searchForm" (ngSubmit)="onFindClick()">
+    <mat-form-field appearance="outline" class="form-control">
+      <mat-label>Имя пользователя</mat-label>
+      <input matInput placeholder="Введите имя пользователя" formControlName="name">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+  <ng-container *ngIf="users &&users.length!=0 ; else empty">
+    <mat-selection-list role="list" #gamesList (selectionChange)="onUserSelect($event)" [multiple]="false" class="list">
+      <ng-container *ngFor="let user of users">
+        <mat-list-option [value]="user">
+          <div mat-list-line>{{user.userName}}</div>
+        </mat-list-option>
+      </ng-container>
+    </mat-selection-list>
+  </ng-container>
+  <ng-template #empty>
+    <h3 class="title">Пользователи не найдены</h3>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Закрыть</button>
+
+</div>

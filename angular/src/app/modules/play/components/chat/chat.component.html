@@ -1,0 +1,18 @@
+<div class="full-page chat-container" fxLayout="column" fxFlexFill>
+  <div fxFlex fxFlexFill class="messages-container">
+    <div *ngFor="let message of messages" class="m-10">
+      <ng-container *ngIf="message.isSystem; else userMessage">
+        <p>{{message.value}}</p>
+      </ng-container>
+      <ng-template #userMessage>
+        <p>{{message.nickname}}: {{message.value}}</p>
+      </ng-template>
+    </div>
+  </div>
+  <div fxFlex="10" class="m-10">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Сообщение..." name="text" [formControl]="messageControl">
+      <mat-icon matSuffix (click)="sendMessage()">send</mat-icon>
+    </mat-form-field>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div *ngIf="user" fxLayout="column">
+  <div>
+    <p class="mat-h1">Добро пожаловать, {{user.userName}}</p>
+    <p class="mat-h2">Вы можете войти под своим иминем или указать псевдоним</p>
+  </div>
+  <div fxFlex="50" fxLayout="column" fxLayoutAlign="center end">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Псевдоним</mat-label>
+      <input matInput [formControl]="nickname">
+    </mat-form-field>
+    <div>
+      <button mat-flat-button (click)="joinToGame()" color="primary">Присоедениться</button>
+    </div>
+  </div>
+</div>

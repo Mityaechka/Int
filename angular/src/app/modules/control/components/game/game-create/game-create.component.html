@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="createGame()" class="m-10">
+  <mat-form-field appearance="outline" class="form-control">
+    <mat-label>Название</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-control">
+    <mat-label>Описание</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-control">
+    <mat-label>Ожидаемое время начала игры</mat-label>
+    <input matInput type="datetime-local" formControlName="planeStartDate">
+  </mat-form-field>
+  <div class="m-10">
+    <button mat-flat-button color="warn" type="submit" [disabled]="form.invalid">Создать</button>
+  </div>
+</form>
